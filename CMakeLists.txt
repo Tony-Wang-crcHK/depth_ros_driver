@@ -27,7 +27,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(Eigen3 REQUIRED)
 
-find_package(OpenCV 4.2.0 REQUIRED)
+find_package(OpenCV REQUIRED)
 if (OpenCV_FOUND)
     MESSAGE(STATUS "OpenCV_VERSION: " ${OpenCV_VERSION})
     MESSAGE(STATUS "OpenCV_INCLUDE_DIRS: " ${OpenCV_INCLUDE_DIRS})

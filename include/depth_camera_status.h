@@ -14,7 +14,7 @@
 class DepthCameraStatus
 {
 public:
-    std::string Key;                ///< 相机的标识符
+    std::string IP;                 ///< 相机的标识符
     bool IsConnected;               ///< 相机的连接状态
     bool IsWorking;                 ///< 相机的工作状态
     unsigned int ErrorFrame;        ///< 相机的错误帧数统计

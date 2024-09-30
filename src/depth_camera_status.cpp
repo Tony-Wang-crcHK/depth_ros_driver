@@ -8,7 +8,7 @@
 
 // 构造函数
 DepthCameraStatus::DepthCameraStatus():
-        Key(),
+        IP(),
         IsConnected(false),
         IsWorking(false),
         ErrorFrame(0),

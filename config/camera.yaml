@@ -36,10 +36,7 @@ ModelParam:
            0.000000000,    1713.879851,    523.5226304,
            0.000000000,    0.000000000,    1.000000000]
 
-  # 相机OpenCV格式的外参矩阵
-  # x轴正向：枪管方向水平向右；y轴正向：枪管方向垂直向下；z轴正向：枪管方向
-  # data[0, 3]，data[1, 3]，data[2, 3]为相机沿x轴、y轴、z轴的平移参数；单位：mm
-  # 相机沿各轴的正向平移，平移参数取负值；相机沿各轴的负向平移，平移参数取正值
+  # 相机OpenCV格式的外参矩阵, 单位：mm
   CvExtrinsics: !!opencv-matrix
     rows: 4
     cols: 4
@@ -58,15 +55,27 @@ ModelParam:
 
 # -----     相机的硬件参数     -----
 HardwareParams:
-  # 相机是否自动白平衡(布尔型)；自动白平衡：1，手动白平衡：0
-  IsBalanceWhiteAuto: 1
-  # 相机是否自动曝光(布尔型)；自动曝光：1，手动曝光：0
-  IsExposureAuto: 0
-  # 相机的曝光时间(浮点型)
-  ExposureTime: 1000.0
-  # 相机的增益值(浮点型)
-  GainRaw: 1.0
-  # 相机的伽马值(浮点型)
-  Gamma: 0.6
-  # 相机的亮度(整型)
-  Brightness: 40
+  # 彩色相机是否自动白平衡(布尔型)；自动白平衡：1，手动白平衡：0
+  IsBalanceWhiteAutoRGB: 1
+  # 彩色相机是否自动曝光(布尔型)；自动曝光：1，手动曝光：0
+  IsExposureAutoRGB: 0
+  # 彩色相机的曝光时间(浮点型)
+  ExposureTimeRGB: 1000.0
+  # 彩色相机的增益值(浮点型)
+  GainRawRGB: 1.0
+  # 彩色相机的伽马值(浮点型)
+  GammaRGB: 0.6
+  # 彩色相机的亮度(整型)
+  BrightnessRGB: 40
+  # 深度相机最小有效亮度
+  MinBrightessDepth: 40
+  # 深度相机最大有效亮度
+  MaxBrightessDepth: 1010
+  # 深度相机飞行像相数阈值, 整数(mm)
+  FlayingPixThresDepth: 50
+  # 深度相机是否自动曝光(布尔型)；自动曝光：1，手动曝光：0
+  IsExposureAutoDepth: 0
+  # 深度相机的曝光时间(浮点型)
+  ExposureTimeDepth: 1000.0
+  # 深度相机的增益值(浮点型)
+  GainRawDepth: 1.0

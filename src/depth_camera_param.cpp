@@ -125,47 +125,77 @@ bool DepthCameraParam::LoadFromYamlFile(const std::string &yamlFileName, DepthCa
     cv::FileNode hardwareParamsNode = fileStorage["HardwareParams"];
     if (!hardwareParamsNode.empty())
     {
-        // 创建硬件参数
-        DepthCameraHardwareParam hardwareParam;
-
-        // 读取IsBalanceWhiteAuto参数
-        if ((!hardwareParamsNode["IsBalanceWhiteAuto"].isNone()) && (hardwareParamsNode["IsBalanceWhiteAuto"].isInt()))
+        // 读取IsBalanceWhiteAutoRGB参数
+        if ((!hardwareParamsNode["IsBalanceWhiteAutoRGB"].isNone()) && (hardwareParamsNode["IsBalanceWhiteAutoRGB"].isInt()))
         {
-            hardwareParam.IsBalanceWhiteAuto = static_cast<int>(hardwareParamsNode["IsBalanceWhiteAuto"]);
+            depthCameraParam -> HardwareParams.IsBalanceWhiteAutoRGB = static_cast<int>(hardwareParamsNode["IsBalanceWhiteAutoRGB"]);
         }
 
-        // 读取IsExposureAuto参数
-        if ((!hardwareParamsNode["IsExposureAuto"].isNone()) && (hardwareParamsNode["IsExposureAuto"].isInt()))
+        // 读取IsExposureAutoRGB参数
+        if ((!hardwareParamsNode["IsExposureAutoRGB"].isNone()) && (hardwareParamsNode["IsExposureAutoRGB"].isInt()))
         {
-            hardwareParam.IsExposureAuto = static_cast<int>(hardwareParamsNode["IsExposureAuto"]);
+            depthCameraParam -> HardwareParams.IsExposureAutoRGB = static_cast<int>(hardwareParamsNode["IsExposureAutoRGB"]);
         }
 
-        // 读取ExposureTime参数
-        if ((!hardwareParamsNode["ExposureTime"].isNone()) && (hardwareParamsNode["ExposureTime"].isReal()))
+        // 读取ExposureTimeRGB参数
+        if ((!hardwareParamsNode["ExposureTimeRGB"].isNone()) && (hardwareParamsNode["ExposureTimeRGB"].isReal()))
         {
-            hardwareParam.ExposureTime = static_cast<float>(hardwareParamsNode["ExposureTime"]);
+            depthCameraParam -> HardwareParams.ExposureTimeRGB = static_cast<float>(hardwareParamsNode["ExposureTimeRGB"]);
         }
 
-        // 读取GainRaw参数
-        if ((!hardwareParamsNode["GainRaw"].isNone()) && (hardwareParamsNode["GainRaw"].isReal()))
+        // 读取GainRawRGB参数
+        if ((!hardwareParamsNode["GainRawRGB"].isNone()) && (hardwareParamsNode["GainRawRGB"].isReal()))
         {
-            hardwareParam.GainRaw = static_cast<float>(hardwareParamsNode["GainRaw"]);
+            depthCameraParam -> HardwareParams.GainRawRGB = static_cast<float>(hardwareParamsNode["GainRawRGB"]);
         }
 
-        // 读取Gamma参数
-        if ((!hardwareParamsNode["Gamma"].isNone()) && (hardwareParamsNode["Gamma"].isReal()))
+        // 读取GammaRGB参数
+        if ((!hardwareParamsNode["GammaRGB"].isNone()) && (hardwareParamsNode["GammaRGB"].isReal()))
         {
-            hardwareParam.Gamma = static_cast<float>(hardwareParamsNode["Gamma"]);
+            depthCameraParam -> HardwareParams.GammaRGB = static_cast<float>(hardwareParamsNode["GammaRGB"]);
         }
 
-        // 读取Brightness参数
-        if ((!hardwareParamsNode["Brightness"].isNone()) && (hardwareParamsNode["Brightness"].isInt()))
+        // 读取BrightnessRGB参数
+        if ((!hardwareParamsNode["BrightnessRGB"].isNone()) && (hardwareParamsNode["BrightnessRGB"].isInt()))
         {
-            hardwareParam.Brightness = static_cast<int>(hardwareParamsNode["Brightness"]);
+            depthCameraParam -> HardwareParams.BrightnessRGB = static_cast<int>(hardwareParamsNode["BrightnessRGB"]);
         }
 
-        // 保存硬件参数
-        depthCameraParam -> HardwareParams = hardwareParam;
+        // 读取MinBrightessDepth参数
+        if ((!hardwareParamsNode["MinBrightessDepth"].isNone()) && (hardwareParamsNode["MinBrightessDepth"].isInt()))
+        {
+            depthCameraParam -> HardwareParams.MinBrightessDepth = static_cast<int>(hardwareParamsNode["MinBrightessDepth"]);
+        }
+
+        // 读取MaxBrightessDepth参数
+        if ((!hardwareParamsNode["MaxBrightessDepth"].isNone()) && (hardwareParamsNode["MaxBrightessDepth"].isInt()))
+        {
+            depthCameraParam -> HardwareParams.MaxBrightessDepth = static_cast<int>(hardwareParamsNode["MaxBrightessDepth"]);
+        }
+
+        // 读取FlayingPixThresDepth参数
+        if ((!hardwareParamsNode["FlayingPixThresDepth"].isNone()) && (hardwareParamsNode["FlayingPixThresDepth"].isInt()))
+        {
+            depthCameraParam -> HardwareParams.FlayingPixThresDepth = static_cast<int>(hardwareParamsNode["FlayingPixThresDepth"]);
+        }
+
+        // 读取IsExposureAutoDepth参数
+        if ((!hardwareParamsNode["IsExposureAutoDepth"].isNone()) && (hardwareParamsNode["IsExposureAutoDepth"].isInt()))
+        {
+            depthCameraParam -> HardwareParams.IsExposureAutoDepth = static_cast<int>(hardwareParamsNode["IsExposureAutoDepth"]);
+        }
+
+        // 读取ExposureTimeDepth参数
+        if ((!hardwareParamsNode["ExposureTimeDepth"].isNone()) && (hardwareParamsNode["ExposureTimeDepth"].isReal()))
+        {
+            depthCameraParam -> HardwareParams.ExposureTimeDepth = static_cast<float>(hardwareParamsNode["ExposureTimeDepth"]);
+        }
+
+        // 读取GainRawDepth参数
+        if ((!hardwareParamsNode["GainRawDepth"].isNone()) && (hardwareParamsNode["GainRawDepth"].isReal()))
+        {
+            depthCameraParam -> HardwareParams.GainRawDepth = static_cast<float>(hardwareParamsNode["GainRawDepth"]);
+        }
     }
 
     // 关闭文件存储器

@@ -15,12 +15,18 @@ class DepthCameraHardwareParam
 {
 public:
 
-    bool IsBalanceWhiteAuto;            ///< 相机是否自动白平衡
-    bool IsExposureAuto;                ///< 相机是否自动曝光
-    double ExposureTime;                ///< 相机的曝光时间
-    double GainRaw;                     ///< 相机的增益值
-    double Gamma;                       ///< 相机的伽马值
-    int64_t Brightness;                 ///< 相机的亮度
+    bool IsBalanceWhiteAutoRGB;             ///< 彩色相机是否自动白平衡
+    bool IsExposureAutoRGB;                 ///< 彩色相机是否自动曝光
+    double ExposureTimeRGB;                 ///< 彩色相机的曝光时间
+    double GainRawRGB;                      ///< 彩色相机的增益值
+    double GammaRGB;                        ///< 彩色相机的伽马值
+    int64_t  BrightnessRGB;                 ///< 彩色相机的亮度
+    int64_t MinBrightessDepth;              ///< 深度相机最小有效亮度
+    int64_t MaxBrightessDepth;              ///< 深度相机最大有效亮度
+    int FlayingPixThresDepth;               ///< 深度相机飞行像相数阈值
+    bool IsExposureAutoDepth;               ///< 深度相机是否自动曝光
+    double ExposureTimeDepth;               ///< 深度相机的曝光时间
+    double GainRawDepth;                    ///< 深度相机增益值
 
     /**
      * @brief 构造函数

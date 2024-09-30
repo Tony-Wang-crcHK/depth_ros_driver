@@ -8,11 +8,17 @@
 
 // 构造函数
 DepthCameraHardwareParam::DepthCameraHardwareParam():
-        IsBalanceWhiteAuto(true),
-        IsExposureAuto(false),
-        ExposureTime(1500.0),
-        GainRaw(1.0),
-        Gamma(0.8),
-        Brightness(40)
+        IsBalanceWhiteAutoRGB(true),
+        IsExposureAutoRGB(false),
+        ExposureTimeRGB(1500.0),
+        GainRawRGB(1.0),
+        GammaRGB(0.8),
+        BrightnessRGB(40),
+        MinBrightessDepth(40),
+        MaxBrightessDepth(1000),
+        FlayingPixThresDepth(),
+        IsExposureAutoDepth(false),
+        ExposureTimeDepth(),
+        GainRawDepth()
 {
 }

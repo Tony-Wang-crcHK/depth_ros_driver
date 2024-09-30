@@ -189,6 +189,7 @@ private:
     std::atomic<bool> isNormal_;             ///< 相机工作状态
     std::atomic<uint64_t> initTimestamp_;    ///< 相机初始化时间戳
     std::atomic<uint64_t> openTimestamp_;    ///< 相机打开时间戳
+    int cameraHandle_;                       ///< 相机句柄
     cv::VideoCapture videoCapture_;          ///< 相机视频捕捉器
     cv::VideoWriter videoWriter_;            ///< 相机视频录制器
     std::atomic<int> frameWidth_;            ///< 相机数据帧宽度
