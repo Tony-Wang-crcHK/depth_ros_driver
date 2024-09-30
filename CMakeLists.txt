@@ -25,6 +25,8 @@ find_package(catkin REQUIRED COMPONENTS
         message_filters
         std_srvs)
 
+find_package(Eigen3 REQUIRED)
+
 find_package(OpenCV 4.2.0 REQUIRED)
 if (OpenCV_FOUND)
     MESSAGE(STATUS "OpenCV_VERSION: " ${OpenCV_VERSION})
@@ -33,41 +35,37 @@ if (OpenCV_FOUND)
 endif()
 
 include_directories(include
+        ${EIGEN3_INCLUDE_DIR}
         ${OpenCV_INCLUDE_DIRS}
         ${catkin_INCLUDE_DIRS})
 
-# version info
-string( TIMESTAMP  COMPILE_TIME "%Y-%m-%d %H:%M:%S " )
-add_definitions(-DCOMPILE_TIME="${COMPILE_TIME}")
-add_definitions(-DVER="1.0")
-site_name(host)
-add_definitions(-DHOST="${host}")
-
-set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -fvisibility=hidden")
-
-SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb ")
-SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall ")
-
-#add_library(depth_sdk SHARED
-#        include/sdk/api.cpp
-#        include/sdk/BuffShared.cpp
-#        include/sdk/nettransmission.cpp
-#        include/sdk/Thread.cpp
-#        include/sdk/TransferCmd.cpp)
-#target_link_libraries(depth_sdk pthread)
-
 set(CAMERA_LIB ${CMAKE_CURRENT_SOURCE_DIR}/include/sdk/lib/librk3588_sdk.so)
+
+add_library(camera SHARED
+        src/depth_camera_data.cpp
+        src/depth_camera_hardware_param.cpp
+        src/depth_camera_model_param.cpp
+        src/depth_camera_param.cpp
+        src/depth_camera_runtime_param.cpp
+        src/depth_camera_status.cpp)
+target_link_libraries(camera
+        ${CAMERA_LIB}
+        ${EIGEN3_LIBRARIES}
+        ${OpenCV_LIBS})
 
 # 选择编译用的包
 catkin_package(CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
           message_filters std_srvs tf_conversions tf cv_bridge
           DEPENDS INCLUDE_DIRS include)
 
-add_executable(test_sdk
-        test/main.cpp)
-target_link_libraries(test_sdk
-        pthread
+add_executable(test_ros_sdk
+        test/test_ros_sdk.cpp)
+target_link_libraries(test_ros_sdk
         ${OpenCV_LIBS}
         ${catkin_LIBRARIES}
         ${CAMERA_LIB})
 
+add_executable(test_camera_param
+        test/test_camera_param.cpp)
+target_link_libraries(test_camera_param
+        camera)
