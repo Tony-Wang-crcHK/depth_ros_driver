@@ -7,11 +7,11 @@
 int main(int argc, char *argv[])
 {
     // 从yaml文件中加载相机参数
-    DepthCameraParam param;
-    DepthCameraParam::LoadFromYamlFile("../config/camera.yaml",
+    DepthRosDriver::DepthCameraParam param;
+    DepthRosDriver::DepthCameraParam::LoadFromYamlFile("../config/camera.yaml",
                                         &param);
 
-//    std::cout<<"IP: "<<param.IP<<std::endl;
+    std::cout<<"IP: "<<param.IP<<std::endl;
 //
 //    std::cout<<"RuntimeParam: "<<param.RuntimeParam.IsOnline<<", " \
 //                               <<param.RuntimeParam.IsRecordVideo<<", " \

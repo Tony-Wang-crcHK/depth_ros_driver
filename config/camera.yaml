@@ -19,11 +19,11 @@ RuntimeParam:
   # 录制视频流任务的CPU内核编号(整型)；CPU内核由操作系统调度：-1，CPU内核固定：>=0
   RecordVideoCpuCore: 2
   # 录制视频的帧率(浮点型)
-  RecordVideoFps: 20.0
+  RecordVideoFps: 5.0
   # 离线视频文件名称(字符串)
-  OfflineVideoName: '/home/cubot/data/video.avi'
+  OfflineVideoName: '/home/tony/workspace/src/depth_ros_driver/data/video.avi'
   # 录像文件存储路径(字符串)，必须以“/”结尾
-  RecordVideoPath: '/home/cubot/data/'
+  RecordVideoPath: '/home/tony/workspace/src/depth_ros_driver/data/'
 
 # -----     相机的模型参数     -----
 ModelParam:
@@ -76,6 +76,6 @@ HardwareParams:
   # 深度相机是否自动曝光(布尔型)；自动曝光：1，手动曝光：0
   IsExposureAutoDepth: 0
   # 深度相机的曝光时间(浮点型)
-  ExposureTimeDepth: 1000.0
+  ExposureTimeDepth: 856.0
   # 深度相机的增益值(浮点型)
   GainRawDepth: 1.0

@@ -4,15 +4,16 @@
 
 #include "depth_camera_model_param.h"
 
+namespace DepthRosDriver {
 // ******************************  HuarayCameraModelParam类的公有函数  ******************************
 
 // 构造函数
-DepthCameraModelParam::DepthCameraModelParam():
-        CvIntrinsics(),
-        CvExtrinsics(),
-        CvDistortions(),
-        EigenIntrinsics(),
-        EigenExtrinsics(),
-        EigenDistortions()
-{
+    DepthCameraModelParam::DepthCameraModelParam() :
+            CvIntrinsics(),
+            CvExtrinsics(),
+            CvDistortions(),
+            EigenIntrinsics(),
+            EigenExtrinsics(),
+            EigenDistortions() {
+    }
 }

@@ -42,6 +42,8 @@ include_directories(include
 set(CAMERA_LIB ${CMAKE_CURRENT_SOURCE_DIR}/include/sdk/lib/librk3588_sdk.so)
 
 add_library(camera SHARED
+        include/depth_camera.h
+        src/depth_camera.cpp
         src/depth_camera_data.cpp
         src/depth_camera_hardware_param.cpp
         src/depth_camera_model_param.cpp
@@ -65,7 +67,19 @@ target_link_libraries(test_ros_sdk
         ${catkin_LIBRARIES}
         ${CAMERA_LIB})
 
-add_executable(test_camera_param
-        test/test_camera_param.cpp)
-target_link_libraries(test_camera_param
+add_executable(test_depth_camera_param
+        test/test_depth_camera_param.cpp)
+target_link_libraries(test_depth_camera_param
+        camera)
+
+add_executable(test_depth_camera
+        test/test_depth_camera.cpp)
+target_link_libraries(test_depth_camera
+        camera)
+
+add_executable(depth_camera_ros_driver
+        depth_camera_ros_driver.h
+        depth_camera_ros_driver.cpp)
+target_link_libraries(depth_camera_ros_driver
+        ${catkin_LIBRARIES}
         camera)

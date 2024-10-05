@@ -1,10 +1,113 @@
 //
-// Created by tony on 23年11月9日.
+// Created by tony on 10/5/24.
 //
 
-#include ""
+#include "depth_camera_ros_driver.h"
 
-int main()
+namespace DepthRosDriver
 {
-    // TODO
+    DepthCameraRosDriver::DepthCameraRosDriver():nh_(),
+                                                 depthPub_(),
+                                                 packagePath_() {
+
+        depthPub_ = nh_.advertise<sensor_msgs::Image>("/depth_map", 1);
+
+        if(!Run())
+        {
+            std::cout<<"run error"<<std::endl;
+        }
+    }
+
+    DepthCameraRosDriver::~DepthCameraRosDriver()
+    {
+        // 关闭相机
+        camera_.Close();
+
+        // 清理相机资源
+        camera_.Release();
+    }
+
+    void DepthCameraRosDriver::SignalHandler(int signal)
+    {
+        if (signal == SIGINT)
+        {
+            ROS_INFO("Caught SIGINT, shutting down node.");
+            ros::shutdown();
+            exit(0);
+        }
+    }
+
+    bool DepthCameraRosDriver::Run()
+    {
+        packagePath_ = ros::package::getPath("depth_ros_driver");
+        std::string cameraYaml = packagePath_ + "/config/camera.yaml";
+        if (!DepthCameraParam::LoadFromYamlFile(cameraYaml, &cameraParam_))
+        {
+            std::cout<<"load error"<<std::endl;
+            return false;
+        }
+
+        // 设置相机参数
+        if (!camera_.SetParam(cameraParam_))
+        {
+            std::cout<<"set error"<<std::endl;
+            return false;
+        }
+
+        // 初始化相机
+        if (!camera_.Init())
+        {
+            std::cout<<"init error"<<std::endl;
+            return false;
+        }
+
+        // 打开相机
+        if (!camera_.Open())
+        {
+            std::cout<<"open error"<<std::endl;
+            return false;
+        }
+
+        // 初始化显示窗体
+        cv::namedWindow("camera", cv::WINDOW_NORMAL);
+        cv::resizeWindow("camera", 640, 480);
+
+        // 初始化播放数据帧索引和上一帧图像的时间戳
+        uint64_t frameIndex = 0;
+        uint64_t previousFrameTimestamp = 0;
+
+        // 播放在线视频
+        while (ros::ok())
+        {
+            // 获取相机数据
+            DepthRosDriver::DepthCameraData cameraData;
+            camera_.GetData(&cameraData);
+            if (cameraData.Timestamp > previousFrameTimestamp)
+            {
+                previousFrameTimestamp = cameraData.Timestamp;
+                frameIndex++;
+            }
+            else
+            {
+                std::this_thread::sleep_for(std::chrono::milliseconds(5));
+                continue;
+            }
+
+            sensor_msgs::ImagePtr depthMsg = cv_bridge::CvImage(std_msgs::Header(), "32FC1", cameraData.DepthImage).toImageMsg();
+
+            depthPub_.publish(depthMsg);
+
+        }
+
+    }
+
+}
+
+int main(int argc, char **argv)
+{
+    ros::init(argc, argv, "depth_ros_driver");
+    DepthRosDriver::DepthCameraRosDriver depthCameraRosDriver;
+   std::signal(SIGINT, DepthRosDriver::DepthCameraRosDriver::SignalHandler);
+    ros::spin();
+    return 0;
 }

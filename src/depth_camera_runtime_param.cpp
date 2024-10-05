@@ -4,16 +4,17 @@
 
 #include "depth_camera_runtime_param.h"
 
+namespace DepthRosDriver {
 // ******************************  DepthCameraRuntimeParam类的公有函数  ******************************
 
 // 构造函数
-DepthCameraRuntimeParam::DepthCameraRuntimeParam():
-        IsOnline(true),
-        IsRecordVideo(false),
-        UpdateDataCpuCore(-1),
-        RecordVideoCpuCore(-1),
-        RecordVideoFps(20.0),
-        OfflineVideoName(),
-        RecordVideoPath()
-{
+    DepthCameraRuntimeParam::DepthCameraRuntimeParam() :
+            IsOnline(true),
+            IsRecordVideo(false),
+            UpdateDataCpuCore(-1),
+            RecordVideoCpuCore(-1),
+            RecordVideoFps(20.0),
+            OfflineVideoName(),
+            RecordVideoPath() {
+    }
 }
