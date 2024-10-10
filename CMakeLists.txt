@@ -78,8 +78,8 @@ target_link_libraries(test_depth_camera
         camera)
 
 add_executable(depth_camera_ros_driver
-        depth_camera_ros_driver.h
-        depth_camera_ros_driver.cpp)
+        depth_camera_ros_driver_node.h
+        depth_camera_ros_driver_node.cpp)
 target_link_libraries(depth_camera_ros_driver
         ${catkin_LIBRARIES}
         camera)

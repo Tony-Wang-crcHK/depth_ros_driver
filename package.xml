@@ -7,11 +7,11 @@
     depth_ros_driver
   </description>
 
-  <maintainer email="000000000@gmail.com">0000</maintainer>
+  <maintainer email="wyq18134091031@gmail.com">0000</maintainer>
 
   <license>BSD</license>
 
-  <author email="000000000@gmail.com">0000</author>
+  <author email="wyq18134091031@gmail.com">0000</author>
   
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>message_generation</build_depend>

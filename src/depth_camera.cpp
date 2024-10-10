@@ -647,7 +647,7 @@ namespace DepthRosDriver
         }
 
         // 初始化临时图像
-        cv::Mat image;
+        cv::Mat depthImage;
 
         // 计算采样周期；单位：纳秒
         auto samplePeriod = static_cast<uint64_t>(1000000000.0 / param_.RuntimeParam.RecordVideoFps);
@@ -661,18 +661,19 @@ namespace DepthRosDriver
 
             // 复制相机数据帧中的图像
             dataMutex_.lock();
-            data_.DepthImage.copyTo(image);
+            data_.DepthImage.copyTo(depthImage);
             dataMutex_.unlock();
 
             // 判断图像参数是否与视频录制器匹配
-            if ((image.cols != frameWidth_) || (image.rows != frameHeight_) || (image.type() != CV_8UC3))
+            if ((depthImage.cols != frameWidth_) || (depthImage.rows != frameHeight_) || (depthImage.type() != CV_32F))
             {
                 continue;
             }
 
-
             // 保存相机数据帧中的图像
-            videoWriter_.write(image);
+            cv::Mat converted;
+            depthImage.convertTo(converted, CV_8U);
+            videoWriter_.write(converted);
 
             // 获取截止时间戳
             std::chrono::time_point <std::chrono::steady_clock> endTime = std::chrono::steady_clock::now();

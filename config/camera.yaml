@@ -19,7 +19,7 @@ RuntimeParam:
   # 录制视频流任务的CPU内核编号(整型)；CPU内核由操作系统调度：-1，CPU内核固定：>=0
   RecordVideoCpuCore: 2
   # 录制视频的帧率(浮点型)
-  RecordVideoFps: 5.0
+  RecordVideoFps: 1.0
   # 离线视频文件名称(字符串)
   OfflineVideoName: '/home/tony/workspace/src/depth_ros_driver/data/video.avi'
   # 录像文件存储路径(字符串)，必须以“/”结尾

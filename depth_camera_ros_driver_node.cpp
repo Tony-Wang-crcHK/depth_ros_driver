@@ -2,7 +2,7 @@
 // Created by tony on 10/5/24.
 //
 
-#include "depth_camera_ros_driver.h"
+#include "depth_camera_ros_driver_node.h"
 
 namespace DepthRosDriver
 {
@@ -43,34 +43,26 @@ namespace DepthRosDriver
         std::string cameraYaml = packagePath_ + "/config/camera.yaml";
         if (!DepthCameraParam::LoadFromYamlFile(cameraYaml, &cameraParam_))
         {
-            std::cout<<"load error"<<std::endl;
             return false;
         }
 
         // 设置相机参数
         if (!camera_.SetParam(cameraParam_))
         {
-            std::cout<<"set error"<<std::endl;
             return false;
         }
 
         // 初始化相机
         if (!camera_.Init())
         {
-            std::cout<<"init error"<<std::endl;
             return false;
         }
 
         // 打开相机
         if (!camera_.Open())
         {
-            std::cout<<"open error"<<std::endl;
             return false;
         }
-
-        // 初始化显示窗体
-        cv::namedWindow("camera", cv::WINDOW_NORMAL);
-        cv::resizeWindow("camera", 640, 480);
 
         // 初始化播放数据帧索引和上一帧图像的时间戳
         uint64_t frameIndex = 0;
@@ -98,9 +90,7 @@ namespace DepthRosDriver
             depthPub_.publish(depthMsg);
 
         }
-
     }
-
 }
 
 int main(int argc, char **argv)
