@@ -22,6 +22,8 @@
 
 #include "depth_camera.h"
 
+const std::string CAMERA_YAML_PATH = "/home/tony/workspace/src/depth_ros_driver/config/camera.yaml";
+
 namespace DepthRosDriver
 {
     class DepthCameraRosDriver {

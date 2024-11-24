@@ -39,8 +39,9 @@ namespace DepthRosDriver
 
     bool DepthCameraRosDriver::Run()
     {
-        packagePath_ = ros::package::getPath("depth_ros_driver");
-        std::string cameraYaml = packagePath_ + "/config/camera.yaml";
+        // packagePath_ = ros::package::getPath("depth_ros_driver");
+        // std::string cameraYaml = packagePath_ + "/config/camera.yaml";
+        std::string cameraYaml = CAMERA_YAML_PATH;
         if (!DepthCameraParam::LoadFromYamlFile(cameraYaml, &cameraParam_))
         {
             return false;

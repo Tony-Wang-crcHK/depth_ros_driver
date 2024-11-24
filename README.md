@@ -14,6 +14,11 @@
    catkin_make 
 
 ### 1.2 运行
+ 
+   参数修改： 所有的参数文件都在config下修改，读取在depth_camera_ros_driver_node.h的宏定义 \
+   const std::string CAMERA_YAML_PATH = "/home/tony/workspace/src/depth_ros_driver/config/camera.yaml";
+   你应该修改为你的参数路径后再运行程序。
+
    source devel/setup.bash
    roslaunch depth_ros_driver depth_camera.launch
 
