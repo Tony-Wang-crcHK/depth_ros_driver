@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        cout << "lens info:" << pInfo << endl;
+        cout  << pInfo << endl;
 
     }
 

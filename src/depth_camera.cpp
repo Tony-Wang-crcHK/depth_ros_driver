@@ -438,10 +438,20 @@ namespace DepthRosDriver
             return false;
         }
 
-        // 获取相机的标识符、连接状态和工作状态
-        status->IP = param_.IP;
+        char *pInfo = NULL;
 
-        ///TODO::
+        pInfo = api_get_intrinsic_parameters(cameraHandle_);
+
+        if(pInfo != NULL)
+            std::cout<< "Intrinsics/Distortions: "<<std::endl<<pInfo <<std::endl;
+
+//        nlohmann::json jsonCameraInfo = nlohmann::json::parse(cameraInfo);
+//
+//        status -> EigenIntrinsics << j["f_x"], 0, j["c_x"], 0, j["f_y"], j["c_y"], 0, 0, 1;
+//
+//        status -> EigenDistortions << j["p_1"], j["p_2"], j["k_1"], j["k_2"], j["k_3"];
+
+        // std::cout<< "status: "<< cameraInfo <<std::endl;
 
         // 返回获取结果
         return true;

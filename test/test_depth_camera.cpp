@@ -70,14 +70,17 @@ int main(int argc, char *argv[])
             continue;
         }
 
+        DepthRosDriver::DepthCameraStatus status;
+        camera.GetStatus(&status);
+
         // 线程延迟，模拟图像处理的消耗
         std::this_thread::sleep_for(std::chrono::milliseconds(6));
 
-        // 输出播放数据帧索引和相机数据索引
-        std::cout << "**************************************************" << std::endl;
-        std::cout << "frameIndex: " << frameIndex << std::endl;
-        std::cout << "cameraDataIndex: " << cameraData.Index << std::endl;
-        std::cout << "**************************************************" << std::endl;
+//        // 输出播放数据帧索引和相机数据索引
+//        std::cout << "**************************************************" << std::endl;
+//        std::cout << "frameIndex: " << frameIndex << std::endl;
+//        std::cout << "cameraDataIndex: " << cameraData.Index << std::endl;
+//        std::cout << "**************************************************" << std::endl;
 
         // 播放视频
         cv::imshow("camera", cameraData.DepthImage);

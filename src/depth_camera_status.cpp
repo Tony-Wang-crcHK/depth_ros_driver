@@ -16,6 +16,8 @@ namespace DepthRosDriver {
             LostPacketFrame(0),
             TotalFrame(0),
             BandWidth(0.0),
-            FPS(0.0) {
+            FPS(0.0),
+            EigenIntrinsics(),
+            EigenDistortions(){
     }
 }

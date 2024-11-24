@@ -85,6 +85,9 @@ namespace DepthRosDriver
                 continue;
             }
 
+            DepthRosDriver::DepthCameraStatus status;
+            camera_.GetStatus(&status);
+
             sensor_msgs::ImagePtr depthMsg = cv_bridge::CvImage(std_msgs::Header(), "32FC1", cameraData.DepthImage).toImageMsg();
 
             depthPub_.publish(depthMsg);

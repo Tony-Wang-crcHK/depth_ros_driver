@@ -6,6 +6,8 @@
 #define WORKSPACE_DEPTH_CAMERA_STATUS_H
 
 #include <string>
+#include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Geometry>
 
 namespace DepthRosDriver
 {
@@ -23,6 +25,8 @@ namespace DepthRosDriver
         unsigned int TotalFrame;        ///< 相机的总帧数统计
         double BandWidth;               ///< 相机的带宽统计
         double FPS;                     ///< 相机的帧率统计
+        Eigen::Matrix3d EigenIntrinsics;                    ///< 相机Eigen格式的内参矩阵
+        Eigen::Matrix<double, 5, 1> EigenDistortions;       ///< 相机Eigen格式的畸变系数向量
 
         /**
          * @brief 构造函数
